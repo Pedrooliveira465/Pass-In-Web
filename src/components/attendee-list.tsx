@@ -54,7 +54,7 @@ export function AttendeeList() {
 
   useEffect(() => {
     const url = new URL(
-      "http://localhost:3333/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees"
+      "http://localhost:8080/events/attendees/094c1f48-6e88-498f-bfe4-b4be2b9ea376"
     );
 
     url.searchParams.set("pageIndex", String(page - 1));
@@ -114,12 +114,12 @@ export function AttendeeList() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-3 items-center">
-        <h1 className="text-2xl font-bold">Participantes</h1>
+        <h1 className="text-2xl font-bold">Participants</h1>
         <div className="px-3 w-72 py-1.5 border border-white/10 rounded-lg flex items-center gap-3">
           <Search className="size-4 text-emerald-300" />
           <input
             className="bg-transparent focus:ring-0 flex-1 outline-none border-0 p-0 text-sm"
-            placeholder="Buscar participante..."
+            placeholder="Search participant..."
             value={search}
             onChange={onSearchInputChanged}
           />
@@ -135,10 +135,9 @@ export function AttendeeList() {
                 className="size-4 bg-black/20 rounded border border-white/10"
               />
             </TableHeader>
-            <TableHeader>Código</TableHeader>
-            <TableHeader>Participante</TableHeader>
-            <TableHeader>Data de inscrição</TableHeader>
-            <TableHeader>Data do check-in</TableHeader>
+            <TableHeader>Participants</TableHeader>
+            <TableHeader>Registration date</TableHeader>
+            <TableHeader>Check-in date</TableHeader>
             <TableHeader style={{ width: 64 }}></TableHeader>
           </tr>
         </thead>
@@ -152,7 +151,6 @@ export function AttendeeList() {
                     className="size-4 bg-black/20 rounded border border-white/10"
                   />
                 </TableCell>
-                <TableCell>{ateendee.id}</TableCell>
                 <TableCell>
                   <div className="flex flex-col gap-1">
                     <span className="font-semibold text-white">
@@ -184,12 +182,13 @@ export function AttendeeList() {
         <tfoot>
           <tr>
             <TableCell colSpan={3}>
-              Mostrando {attendees.length} de {total} itens
+              Showing {attendees.length} {total} items
             </TableCell>
             <TableCell className="text-right" colSpan={3}>
               <div className="inline-flex items-center gap-8">
                 <span>
-                  Página {page} de {totalPages}
+                  Page {page} 
+                  {/* {totalPages} */}
                 </span>
 
                 <div className="flex gap-1.5">
